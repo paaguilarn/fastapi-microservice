@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/srv/{{project_prefix}}
+      - ./shared:/shared
+    command: {% if add_auto_instrumentation %}opentelemetry-instrument{% endif %} gunicorn api.main:app -w 1 -k uvicorn.workers.UvicornWorker -b :8080 -t 180
+    env_file:
+      - .env
+    tty: true
+    restart: always
