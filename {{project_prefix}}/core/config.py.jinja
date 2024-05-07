@@ -11,4 +11,8 @@ class Settings(BaseSettings):
     openapi_route: str = f"/api/v1/{project_prefix}/openapi.json"
     docs_url: str = f"/docs/{project_prefix}"
     redoc_url: str = f"/redoc/{project_prefix}"
+    {% if use_postgres %}
+    db_uri: PostgresDsn = Field("postgresql://postgres:@db/{{ project_prefix }}", alias="DB_URI")
+    {% endif %}
+
 settings = Settings()

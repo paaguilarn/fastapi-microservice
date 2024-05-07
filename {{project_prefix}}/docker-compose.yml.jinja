@@ -1,4 +1,15 @@
 services:
+  {% if use_postgres %}
+  db:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+  {% endif %}
   {% if add_auto_instrumentation %}
   jaeger:
     image: jaegertracing/all-in-one:${JAEGER_VERSION:-latest}
