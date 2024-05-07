@@ -1,0 +1,16 @@
+# questions
+project_name:
+  type: str
+  help: What is the project name?
+
+project_prefix:
+  type: str
+  help: What is the project prefix?
+
+use_postgres:
+  type: bool
+  help: Use a postgres database?
+  
+add_auto_instrumentation:
+  type: bool
+  help: Use Opentelemetry auto-instrumentation?
