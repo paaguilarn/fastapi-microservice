@@ -4,7 +4,7 @@ WORKDIR /srv/{{project_prefix}}
 COPY ./requirements.txt .
 RUN python -m pip install --upgrade pip
 RUN pip3 install -r requirements.txt
-RUN pip3 install pytest pytest-cov pytest-benchmark
+RUN pip3 install -r requirements-test.txt
 {% if add_auto_instrumentation %}
 RUN pip3 install opentelemetry-distro opentelemetry-exporter-otlp
 RUN opentelemetry-bootstrap -a install
